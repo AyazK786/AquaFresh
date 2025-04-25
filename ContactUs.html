@@ -183,7 +183,7 @@
                         <div class="inner-box">
                             <h2 class="title-text">Send a Message</h2>
                             <div class="form-inner">
-                                <form id="form" class="default-form" method="POST" action="https://script.google.com/macros/s/AKfycbwvN1nyn578Jvfb8MVrRhb1HekQmDN2aJ_4seBVNND-xpCtcA_zdhVYyNaYi_kNkmDA/exec">
+                                <form id="form" class="default-form" method="POST" action="https://script.google.com/macros/s/AKfycbwvN1nyn578Jvfb8MVrRhb1HekQmDN2aJ_4seBVNND-xpCtcA_zdhVYyNaYi_kNkmDA/exec" onsubmit="return handleSubmit()">
                                     <div class="row clearfix">
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <label>Your Name</label>
@@ -342,6 +342,19 @@
 
     <!-- main-js -->
     <script src="js/script.js"></script>
+
+    <script>
+    function handleSubmit() {
+        // Show success message
+        alert('Enquiry sent successfully');
+
+        // Reload the page
+        location.reload();
+
+        // Allow the form to submit normally (after the alert)
+        return true;
+    }
+</script>
 
 </body>
 </html>
