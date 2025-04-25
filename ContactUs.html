@@ -206,11 +206,6 @@
                                             <textarea name="Message" id="Message"></textarea>
                                         </div>
 
-                                        <input type="text" name="latitude" id="latitude" hidden>
-                                        <input type="text" name="longitude" id="longitude" hidden>
-                                        <input type="text" name="Ip" id="Ip" hidden>
-                                        <input type="text" name="IpAddress" id="IpAddress" hidden>
-
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
                                             <button type="submit" id="submit" name="submit-form">submit now</button>
                                         </div>
@@ -347,57 +342,6 @@
 
     <!-- main-js -->
     <script src="js/script.js"></script>
-
-
-    <script>
-                        $(document).ready(function() {
-                            $.getJSON("https://api.ipify.org?format=json", function(t) {
-                                var a = t.ip;
-                                $("#IpAddress").val(a),
-                                $("#Ip").val(a),
-                                navigator.geolocation ? navigator.geolocation.getCurrentPosition(function(t) {
-                                    var o = t.coords.latitude
-                                      , e = t.coords.longitude;
-                                    $("#latitude").val(o),
-                                    $("#longitude").val(e),
-                                    $("#IpAddress").val("Ip:" + a + ",latitude:" + o + ",longitude:" + e)
-                                }, function(t) {
-                                    $("#IpAddress").val(a + ",Unable to retrieve latitude,Unable to retrieve longitude")
-                                }) : $("#IpAddress").val(a + ",Geolocation not supported,Geolocation not supported")
-                            })
-                        })
-    </script>
-
-    <script>
-                        let url = 'https://script.google.com/macros/s/AKfycbwvN1nyn578Jvfb8MVrRhb1HekQmDN2aJ_4seBVNND-xpCtcA_zdhVYyNaYi_kNkmDA/exec';
-                        let form = document.querySelector('#form');
-                        form.addEventListener("submit", (e) => {
-                            e.preventDefault();
-                            let latitude = document.getElementById('latitude').value;
-                            let longitude = document.getElementById('longitude').value;
-                            let Ip = document.getElementById('Ip').value;
-                            if (!latitude || !longitude || !Ip) {
-                                alert("Please enable location services or provide a valid location.");
-                                return;
-                            } else {
-                                let formData = new FormData(form);
-                                fetch(url, {
-                                    method: "POST",
-                                    body: formData
-                                }).then( (res) => res.text()).then( (finalRes) => {
-                                    console.log(finalRes);
-                                    alert("Save Successfully");
-                                    location.reload();
-                                }
-                                ).catch( (error) => {
-                                    console.error('Error:', error);
-                                    alert("An error occurred. Please try again.");
-                                }
-                                );
-                            }
-                        }
-                        );
-    </script>
 
 </body>
 </html>
