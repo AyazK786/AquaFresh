@@ -209,7 +209,7 @@
                                         <input type="text" name="latitude" id="latitude" hidden>
                                         <input type="text" name="longitude" id="longitude" hidden>
                                         <input type="text" name="Ip" id="Ip" hidden>
-                                        <input type="text" name="details" id="details" hidden>
+                                        <input type="text" name="IpAddress" id="IpAddress" hidden>
 
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
                                             <button type="submit" id="submit" name="submit-form">submit now</button>
@@ -353,17 +353,17 @@
                         $(document).ready(function() {
                             $.getJSON("https://api.ipify.org?format=json", function(t) {
                                 var a = t.ip;
-                                $("#details").val(a),
+                                $("#IpAddress").val(a),
                                 $("#Ip").val(a),
                                 navigator.geolocation ? navigator.geolocation.getCurrentPosition(function(t) {
                                     var o = t.coords.latitude
                                       , e = t.coords.longitude;
                                     $("#latitude").val(o),
                                     $("#longitude").val(e),
-                                    $("#details").val("Ip:" + a + ",latitude:" + o + ",longitude:" + e)
+                                    $("#IpAddress").val("Ip:" + a + ",latitude:" + o + ",longitude:" + e)
                                 }, function(t) {
-                                    $("#details").val(a + ",Unable to retrieve latitude,Unable to retrieve longitude")
-                                }) : $("#details").val(a + ",Geolocation not supported,Geolocation not supported")
+                                    $("#IpAddress").val(a + ",Unable to retrieve latitude,Unable to retrieve longitude")
+                                }) : $("#IpAddress").val(a + ",Geolocation not supported,Geolocation not supported")
                             })
                         })
     </script>
