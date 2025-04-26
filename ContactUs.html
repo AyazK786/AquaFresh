@@ -33,6 +33,10 @@
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/jquery-ui.css" rel="stylesheet" />
     <link href="css/jquery.bootstrap-touchspin.css" rel="stylesheet" />
+
+    <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 </head>
 
 <body class="boxed_wrapper">
@@ -183,7 +187,7 @@
                         <div class="inner-box">
                             <h2 class="title-text">Send a Message</h2>
                             <div class="form-inner">
-                                <form id="form" class="default-form" method="POST" action="https://script.google.com/macros/s/AKfycbwvN1nyn578Jvfb8MVrRhb1HekQmDN2aJ_4seBVNND-xpCtcA_zdhVYyNaYi_kNkmDA/exec" onsubmit="return handleSubmit(event)">
+                                <form id="form" class="default-form" method="POST" action="https://script.google.com/macros/s/AKfycbwvN1nyn578Jvfb8MVrRhb1HekQmDN2aJ_4seBVNND-xpCtcA_zdhVYyNaYi_kNkmDA/exec">
     <div class="row clearfix">
         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
             <label>Your Name</label>
@@ -207,13 +211,10 @@
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
-            <button type="submit" id="submit" name="submit-form">submit now</button>
+            <button type="button" id="submit" name="submit-form">submit now</button>
         </div>
     </div>
 </form>
-
-
-
                             </div>
                         </div>
                     </div>
@@ -346,18 +347,36 @@
     <!-- main-js -->
     <script src="js/script.js"></script>
 
-    <script>
-    function handleSubmit(event) {
+   <script>
+    $(document).ready(function() {
+        $('#submit').on('click', function(event) {
+            // Prevent form submission and handle via jQuery
+            event.preventDefault();
 
-        // Show success message
-        alert('Enquiry sent successfully');
+            // Collect form data
+            var formData = $('#form').serialize();
 
-        // Reload the page
-        window.location.reload();
+            // Use jQuery AJAX to submit the form data to Google Apps Script
+            $.ajax({
+                url: $('#form').attr('action'),
+                type: 'POST',
+                data: formData,
+                success: function(response) {
+                    // Show success message
+                    alert('Enquiry sent successfully');
 
-        // Now, submit the form
-        event.target.submit();
-    }
+                    // Reload the page after a short delay to allow the alert to be visible
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);  // 1-second delay
+                },
+                error: function(xhr, status, error) {
+                    // Handle any errors during the submission
+                    alert('Something went wrong. Please try again later.');
+                }
+            });
+        });
+    });
 </script>
 </body>
 </html>
