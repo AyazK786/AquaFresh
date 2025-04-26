@@ -183,34 +183,37 @@
                         <div class="inner-box">
                             <h2 class="title-text">Send a Message</h2>
                             <div class="form-inner">
-                                <form id="form" class="default-form" method="POST" action="https://script.google.com/macros/s/AKfycbwvN1nyn578Jvfb8MVrRhb1HekQmDN2aJ_4seBVNND-xpCtcA_zdhVYyNaYi_kNkmDA/exec" onsubmit="return handleSubmit()">
-                                    <div class="row clearfix">
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <label>Your Name</label>
-                                            <input type="text" name="Name" id="Name" required>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <label>Email address</label>
-                                            <input type="email" name="Email" id="Email" required>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <label>Subject</label>
-                                            <input type="text" name="Subject" id="Subject" required>
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                            <label>Phone</label>
-                                            <input type="text" name="PhoneNo" id="PhoneNo" required>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                            <label>Message</label>
-                                            <textarea name="Message" id="Message"></textarea>
-                                        </div>
+                                <form id="form" class="default-form" method="POST" action="https://script.google.com/macros/s/AKfycbwvN1nyn578Jvfb8MVrRhb1HekQmDN2aJ_4seBVNND-xpCtcA_zdhVYyNaYi_kNkmDA/exec" onsubmit="return handleSubmit(event)">
+    <div class="row clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+            <label>Your Name</label>
+            <input type="text" name="Name" id="Name" required>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+            <label>Email address</label>
+            <input type="email" name="Email" id="Email" required>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+            <label>Subject</label>
+            <input type="text" name="Subject" id="Subject" required>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+            <label>Phone</label>
+            <input type="text" name="PhoneNo" id="PhoneNo" required>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+            <label>Message</label>
+            <textarea name="Message" id="Message"></textarea>
+        </div>
 
-                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
-                                            <button type="submit" id="submit" name="submit-form">submit now</button>
-                                        </div>
-                                    </div>
-                                </form>
+        <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
+            <button type="submit" id="submit" name="submit-form">submit now</button>
+        </div>
+    </div>
+</form>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -344,17 +347,19 @@
     <script src="js/script.js"></script>
 
     <script>
-    function handleSubmit() {
+    function handleSubmit(event) {
+        // Prevent the form from submitting immediately
+        event.preventDefault();
+
         // Show success message
         alert('Enquiry sent successfully');
 
         // Reload the page
         window.location.reload();
 
-        // Allow the form to submit normally (after the alert)
-        return true;
+        // Now, submit the form
+        event.target.submit();
     }
 </script>
-
 </body>
 </html>
