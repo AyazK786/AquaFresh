@@ -33,9 +33,6 @@
     <link href="css/responsive.css" rel="stylesheet" />
     <link href="css/jquery-ui.css" rel="stylesheet" />
     <link href="css/jquery.bootstrap-touchspin.css" rel="stylesheet" />
-
-    <!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 </head>
 
@@ -347,36 +344,30 @@
     <!-- main-js -->
     <script src="js/script.js"></script>
 
-   <script>
-    $(document).ready(function() {
-        $('#submit').on('click', function(event) {
-            // Prevent form submission and handle via jQuery
-            event.preventDefault();
+  <script>
+    const url = 'https://script.google.com/macros/s/AKfycbws500uA15CQ1i2A9KSD88fAoV3n3tPr5vTJATORi2-6bqJC-rTdKje1BDz1EksQVecoA/exec';
+    const form = document.querySelector('#form');
 
-            // Collect form data
-            var formData = $('#form').serialize();
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
 
-            // Use jQuery AJAX to submit the form data to Google Apps Script
-            $.ajax({
-                url: $('#form').attr('action'),
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    // Show success message
-                    alert('Enquiry sent successfully');
-
-                    // Reload the page after a short delay to allow the alert to be visible
-                    setTimeout(function() {
-                        window.location.reload();
-                    }, 1000);  // 1-second delay
-                },
-                error: function(xhr, status, error) {
-                    // Handle any errors during the submission
-                    alert('Something went wrong. Please try again later.');
-                }
-            });
+        fetch(url, {
+            method: "POST",
+            body: formData
+        })
+        .then((res) => res.text())
+        .then((finalRes) => {
+            console.log(finalRes);
+            alert("Saved Successfully");
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert("An error occurred. Please try again.");
         });
     });
 </script>
+
 </body>
 </html>
