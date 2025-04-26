@@ -184,34 +184,34 @@
                         <div class="inner-box">
                             <h2 class="title-text">Send a Message</h2>
                             <div class="form-inner">
-                                <form id="form" class="default-form" method="POST" action="https://script.google.com/macros/s/AKfycbxHCI2894trwAv1-Nbm3dD2l0N0OjHndTs4ssDTvWVJfpuRgsfkyQOuFpw12xEemxVg/exec">
-    <div class="row clearfix">
-        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-            <label>Your Name</label>
-            <input type="text" name="Name" id="Name" required>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-            <label>Email address</label>
-            <input type="email" name="Email" id="Email" required>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-            <label>Subject</label>
-            <input type="text" name="Subject" id="Subject" required>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-            <label>Phone</label>
-            <input type="text" name="PhoneNo" id="PhoneNo" required>
-        </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-            <label>Message</label>
-            <textarea name="Message" id="Message"></textarea>
-        </div>
+                                <form id="form" class="default-form" method="POST" action="https://script.google.com/macros/s/AKfycbwJDICKDu6UN9gmb3uE3crQrs0ATs7rm7O6koPTdpeJHzYTVt1oBk4pYwvItnnXm8bv/exec" onsubmit="reloadPage()">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <label>Your Name</label>
+                                            <input type="text" name="Name" id="Name" required>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <label>Email address</label>
+                                            <input type="email" name="Email" id="Email" required>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <label>Subject</label>
+                                            <input type="text" name="Subject" id="Subject" required>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <label>Phone</label>
+                                            <input type="text" name="PhoneNo" id="PhoneNo" required>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                            <label>Message</label>
+                                            <textarea name="Message" id="Message"></textarea>
+                                        </div>
 
-        <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
-            <button type="submit" id="submit" name="submit-form">submit now</button>
-        </div>
-    </div>
-</form>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group message-btn">
+                                            <button type="submit" id="submit" name="submit-form">Submit now</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -332,10 +332,7 @@
     <script src="js/jquery-ui.js"></script>
     <script src="js/appear.js"></script>
     <script src="js/jquery.bootstrap-touchspin.js"></script>
-   
-     <!-- jQuery CDN -->
-    <!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
-
+    
     <!-- map script -->
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyATY4Rxc8jNvDpsK8ZetC7JyN4PFVYGCGM"></script>
     <script src="js/gmaps.js"></script>
@@ -344,30 +341,14 @@
     <!-- main-js -->
     <script src="js/script.js"></script>
 
-  <script>
-    const url = 'https://script.google.com/macros/s/AKfycbxHCI2894trwAv1-Nbm3dD2l0N0OjHndTs4ssDTvWVJfpuRgsfkyQOuFpw12xEemxVg/exec';
-    const form = document.querySelector('#form');
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-
-        fetch(url, {
-            method: "POST",
-            body: formData
-        })
-        .then((res) => res.text())
-        .then((finalRes) => {
-            console.log(finalRes);
-            alert("Saved Successfully");
-            location.reload();
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert("An error occurred. Please try again.");
-        });
-    });
-</script>
+ <script>
+    function reloadPage() {
+        // Reload the page after form submission
+        setTimeout(function() {
+            location.reload(); // Reload the page after the form submission
+        }, 1000); // You can adjust the time if you want to wait before reloading
+    }
+    </script>
 
 </body>
 </html>
