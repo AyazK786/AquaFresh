@@ -342,6 +342,14 @@
     <script src="js/script.js"></script>
 
 <script>
+                        var phoneInput = document.getElementById("PhoneNo");
+                        phoneInput.addEventListener("input", function() {
+                            this.value = this.value.replace(/\D/g, ""),
+                            10 < this.value.length && (this.value = this.value.slice(0, 10))
+                        })
+    </script>
+    
+<script>
     function reloadPage() {
         // Show an alert before reloading
         alert("Your Enquiry has been Submitted Successfully!");
