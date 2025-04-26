@@ -341,12 +341,17 @@
     <!-- main-js -->
     <script src="js/script.js"></script>
 
- <script>
+<script>
     function reloadPage() {
-        // Reload the page after form submission
+        event.preventDefault();  // Prevent form submission
+
+        // Show an alert before reloading
+        alert("Your Enquiry has been Submitted Successfully!");
+
+        // Reload the page after a short delay
         setTimeout(function() {
-            location.reload(); // Reload the page after the form submission
-        }, 1000); // You can adjust the time if you want to wait before reloading
+            location.reload(); // Reload the page after form submission
+        }, 1000); // 1 second delay
     }
     </script>
 
